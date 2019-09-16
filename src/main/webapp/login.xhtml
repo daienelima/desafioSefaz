@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html xmlns ="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	lang="pt-br">
+	
+	<h:head>
+		<title>Login</title>
+	</h:head>
+	<body>
+		<h:form>
+			<p:messages />
+			<p:panelGrid columns="2">
+				<h:outputText value="E-mail: "/>
+				<p:inputText value="#{sessaoBean.email}"/>
+				<h:outputText value="Senha: "/>
+				<p:password value="#{sessaoBean.senha}"/>
+				
+			</p:panelGrid>
+			<p:commandButton action="#{sessaoBean.login()}" value="Entrar"
+				process="@form" update="@form"/>
+		</h:form>
+	</body>
+</html>

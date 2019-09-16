@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html xmlns ="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	lang="pt-br">
+	
+	<h:head>
+		<title>Desafio Sefaz</title>
+	</h:head>
+	<body>
+		<div style="float: right;">
+			Usuario Logado #{sessaoBean.email}
+		</div>
+		<p:outputLabel value="#{usuarioBean.titulo}" />
+		<h:form>
+			<p:panelGrid columns="2">
+				<h:outputText value="Nome: "/>
+				<h:inputText value="#{usuarioBean.usuario.nome}"/>
+				<h:outputText value="E-mail: "/>
+				<h:inputText value="#{usuarioBean.usuario.email}"/>
+				<h:outputText value="Senha: "/>
+				<h:inputSecret value="#{usuarioBean.usuario.senha}"/>
+				<h:outputText value="DDD: "/>
+				<h:inputText value="#{usuarioBean.telefone.ddd}"/>
+				<h:outputText value="Numero: "/>
+				<h:inputText value="#{usuarioBean.telefone.numero}"/>
+				
+				<h:outputText value="Tipo: "/>
+				<h:selectOneMenu value="#{dataBean.tipos}">
+					<f:selectItem itemLabel="Fixo" itemValue="1" />
+					<f:selectItem itemLabel="Celular" itemValue="2" />
+				</h:selectOneMenu>
+			</p:panelGrid>
+			<p:commandButton action="#{usuarioBean.gravar()}" value="Salvar"/>
+		</h:form>
+		<br></br>
+
+		<h:form id="lista">
+			<p:dataTable value="#{usuarioBean.usuarios}" var="user" editable="true" >
+				<p:column>
+					<f:facet name="header">Nome</f:facet>
+					#{user.nome}
+				</p:column>
+				
+				<p:column>
+					<f:facet name="header">E-mail</f:facet>
+					#{user.email}
+				</p:column>
+				<p:column>
+					<f:facet name="header">Alterar/Deletar</f:facet>
+					<p:commandButton value="click" oncomplete="PF('Detalhe').show()" process="@this" update=":detalhe">
+						<f:setPropertyActionListener value="#{user}" target="#{usuarioBean.usuario}"></f:setPropertyActionListener>
+					</p:commandButton>
+				</p:column>
+			</p:dataTable>	
+		</h:form>
+		<p:dialog modal="true" height="400" width="400" widgetVar="Detalhe">
+			<h:form id="detalhe">
+				<h:panelGrid columns="2">
+					<h:outputLabel value="Id" />
+					<h:outputText value="#{usuarioBean.usuario.id}" />
+					<h:outputLabel value="Nome" />
+					<h:inputText value="#{usuarioBean.usuario.nome}" />
+					<h:outputLabel value="E-mail" />
+					<h:inputText value="#{usuarioBean.usuario.email}" />
+					<p:commandButton value="Alterar" action="#{usuarioBean.gravar()}" />
+					<p:commandButton value="Deletar" action="#{usuarioBean.deletar()}" />
+				</h:panelGrid>
+			</h:form>
+		</p:dialog>
+	</body>
+</html>
