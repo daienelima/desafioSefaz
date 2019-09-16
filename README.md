@@ -5,7 +5,6 @@
 |--------|----------|---------|----------|---------|
 | HSQLDB | Wildfly  | desafio | desafio  | desafio |
 |        |          |         |          |         |
-|        |          |         |          |         |
 
 ## Concluidos
 - [x] Estruturar a aplicação em camadas
