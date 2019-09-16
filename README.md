@@ -1,7 +1,7 @@
 # desafioSefaz
 
 ## Configurações
-| Banco  | Servidor | User    | Password | Banco   |
+| Banco  | Servidor | User    | Password | Database|
 |--------|----------|---------|----------|---------|
 | HSQLDB | Wildfly  | desafio | desafio  | desafio |
 |        |          |         |          |         |
